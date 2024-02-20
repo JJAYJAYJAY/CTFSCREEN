@@ -1,0 +1,124 @@
+.bigscreen {
+		max-width: 1920px;
+		position: relative;
+    min-width: 1366px;
+    min-height: 968px;
+    overflow: hidden;
+    background: url('../../../assets/images/starwar/bg.jpg')
+}
+.right-tool-wrap {
+    float: right;
+    cursor: pointer
+}
+.fix-shade {
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+    min-width: 1920px;
+    min-height: 968px;
+    background-color: #151a28
+}
+
+.screen-head {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.screen-head .screen-head-title {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    min-width: 300px;
+    min-height: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, 0);
+    text-align: center;
+    line-height: 30px;
+    font-size: 28px;
+    color: white;
+    padding: 10px 0;
+}
+.screen-head .screen-message {
+    width: 100%;
+    height: 30px;
+}
+.screen-head .screen-head-title::before {
+    position: absolute;
+    right: -80px;
+    top: 0px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 50px solid rgba(0, 0, 0, 0.3);
+    border-right: 80px solid transparent;
+}
+.screen-head .screen-head-title::after {
+    position: absolute;
+    left: -80px;
+    top: 0px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top:50px solid rgba(0, 0, 0, 0.3);
+    border-left: 80px solid transparent;
+}
+
+#canvas {
+
+}
+#canvas-battle {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+}
+
+.screen-message-warpper {
+    position: absolute;
+    width: 560px;
+    height: 230px;
+    bottom: 20px;
+    left: 20px;
+    overflow-y: scroll
+}
+.screen-message-warpper::-webkit-scrollbar {/*滚动条整体样式*/
+
+        width: 3px;     /*高宽分别对应横竖滚动条的尺寸*/
+
+        height: 1px;
+
+    }
+
+.screen-message-warpper::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+
+        border-radius: 3px;
+
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+
+        background: #535353;
+
+    }
+
+.screen-message-warpper::-webkit-scrollbar-track {/*滚动条里面轨道*/
+
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+
+        border-radius: 3px;
+
+        background: #EDEDED;
+
+}
+.screen-message-warpper .ivu-list-split .ivu-list-item {
+    border-bottom: 0px
+}
+.screen-message-warpper .ivu-list-item-meta-description {
+    color: white;
+}
+.screen-head-title-time {
+    position: absolute;
+    right: -190px;
+    bottom: -7px;
+    font-size: 14px;
+    color: #fff;
+}
