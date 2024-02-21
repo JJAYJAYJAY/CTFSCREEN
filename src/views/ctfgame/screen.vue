@@ -49,7 +49,6 @@
       </div>
       <div class="right-sider">
         <ScrollEvent />
-        <LoveTalk/>
       </div>
     </div>
   </dv-full-screen-container>
@@ -65,7 +64,6 @@ import {Icon} from "view-ui-plus";
 import NoticePanel from "@/views/ctfgame/components/noticePanel.vue";
 import emitter from "view-ui-plus/src/mixins/emitter.js";
 import ScrollEvent from "./components/scrollEvent.vue";
-import LoveTalk from "./components/LoveTalk.vue";
 const route = useRoute()
 const gameInfo = reactive({});
 const timer = ref(null);

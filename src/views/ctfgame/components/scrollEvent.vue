@@ -29,7 +29,6 @@
         animation-duration: 1s;
         animation-fill-mode: forwards;
         color: rgb(0, 0, 0,1);
-        transition: ease 1s;
         translate:0 0;
     }
     .info:nth-of-type(2){
@@ -52,7 +51,7 @@
 <template>
     <dv-border-box-12 style="padding: 20px; height: 600px;">
         <ul class="event_online">
-            <li class="info" v-for="data in usedatastore.dataList" :key="data.id">
+            <li class="info" v-for="data in usedatastore.dataList" :key="data.userId">
                 {{ data.nickname }}
             </li>
         </ul>
