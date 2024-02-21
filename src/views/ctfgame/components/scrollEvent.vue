@@ -14,9 +14,14 @@
         background-color:  rgba(1, 215, 211, 0.252);
         border-radius: 10px;
         border: solid rgba(0, 9, 47, 0.683) 1px;
-        transition: ease 1s;
         position: absolute;
         visibility: hidden;
+        translate:0 360%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     @keyframes es-in{
         from{
@@ -32,19 +37,23 @@
         animation-duration: 1s;
         animation-fill-mode: forwards;
         translate:0 0;
+        transition: ease 1s;
     }
     .info:nth-of-type(2){
         visibility: visible;
         translate:0 120%;
+        transition: ease 1s;
     }
     .info:nth-of-type(3){
         visibility: visible;
         translate:0 240%;
+        transition: ease 1s;
     }
     .info:nth-of-type(4){
         visibility: hidden;
         opacity: 0;
         translate:0 360%;
+        transition: ease 1s;
     }
     .info span{
         font-weight: bold;
@@ -55,7 +64,7 @@
 <template>
     <dv-border-box-12 style="padding: 20px; height: 380px;">
         <div class="event_online">
-            <div class="info" v-for="data in usedatastore.dataList" :key="data.userId">
+            <div class="info" v-for="data in usedatastore.dataList" :key="data.id">
                 <p>{{ data.time }}</p>
                 <div v-if="data.eventType=='FIRST_BLOOD'" style="color: rgb(212, 95, 95);">[FirstBlood]</div>
                 <span>{{ data.nickname }}</span>成功解决了题目<span>[{{ data.problemType }}]{{ data.problemName }}</span>,取得了{{ data.point }}分
@@ -68,7 +77,7 @@
 import { gameWebSocket } from '@/api/game';
 import { getDate } from '@/libs/tools';
 import { usedataStore } from '@/store/dataList';
-import {ref} from 'vue';
+import { nanoid } from 'nanoid';
 
     //获取dataStore
     const usedatastore=usedataStore();
@@ -81,6 +90,7 @@ import {ref} from 'vue';
         const datas=JSON.parse(msg.data);
         for(let data of datas.params){
             data.time=getDate(data.createTimestamp,'date');
+            data.id=nanoid();//随机生成一个id
             data_store.push(data);
         }
         console.log(data_store);    
