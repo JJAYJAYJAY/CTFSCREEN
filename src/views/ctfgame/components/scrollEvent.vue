@@ -1,6 +1,5 @@
 <style scoped>
     .event_online{
-        background-color: aliceblue;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -8,9 +7,13 @@
         transition: ease 1s;
     }
     .info{
-        color: rgb(0, 0, 0,0);
-        background-color:  rgb(26, 255, 251);
-        margin: 10px;
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        color: aliceblue;
+        background-color:  rgba(1, 215, 211, 0.252);
+        border-radius: 10px;
+        border: solid rgba(0, 9, 47, 0.683) 1px;
         transition: ease 1s;
         position: absolute;
         visibility: hidden;
@@ -28,16 +31,13 @@
         animation-name:es-in;
         animation-duration: 1s;
         animation-fill-mode: forwards;
-        color: rgb(0, 0, 0,1);
         translate:0 0;
     }
     .info:nth-of-type(2){
-        color: rgb(0, 0, 0,1);
         visibility: visible;
         translate:0 120%;
     }
     .info:nth-of-type(3){
-        color: rgb(0, 0, 0,1);
         visibility: visible;
         translate:0 240%;
     }
@@ -49,12 +49,14 @@
 </style>
 
 <template>
-    <dv-border-box-12 style="padding: 20px; height: 600px;">
-        <ul class="event_online">
-            <li class="info" v-for="data in usedatastore.dataList" :key="data.userId">
-                {{ data.nickname }}
-            </li>
-        </ul>
+    <dv-border-box-12 style="padding: 20px; height: 380px;">
+        <div class="event_online">
+            <div class="info" v-for="data in usedatastore.dataList" :key="data.userId">
+                <p>{{ data.time }}</p>
+                <div v-if="data.eventType=='FIRST_BLOOD'" style="color: rgb(255, 128, 128);">[FirstBlood]</div>
+                {{ data.nickname }}成功解决了题目[{{ data.problemType }}]{{ data.problemName }},取得了{{ data.point }}分
+            </div>
+        </div>
     </dv-border-box-12>
 </template>
 
@@ -74,6 +76,7 @@ import {ref} from 'vue';
     ws.onmessage=(msg)=>{
         const datas=JSON.parse(msg.data);
         for(let data of datas.params){
+            data.time=getDate(data.createTimestamp,'date');
             data_store.push(data);
         }
         console.log(data_store);    

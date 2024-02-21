@@ -89,14 +89,15 @@ const getHandledValue = num => {
 export const getDate = (timeStamp, startType) => {
     const d = new Date(timeStamp * 1000)
     const year = d.getFullYear()
-    const month = getHandledValue(d.getMonth() + 1)
-    const date = getHandledValue(d.getDate())
+    const month = d.getMonth() + 1
+    const date = d.getDate()
     const hours = getHandledValue(d.getHours())
     const minutes = getHandledValue(d.getMinutes())
     const second = getHandledValue(d.getSeconds())
     let resStr = ''
 
     if (startType === 'year') resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second
+    else if(startType === 'date') resStr=month+'/'+date+' '+hours+':'+minutes+':'+second;
     else resStr = date + '天' + hours + '小时' + minutes + '分' + second + '秒'
     return resStr
 }
