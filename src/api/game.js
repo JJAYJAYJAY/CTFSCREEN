@@ -22,15 +22,15 @@ export const gameWebSocket = () => {
       ws.onopen=()=>{
         console.log('websocket open');
       }
-      
+
       ws.onmessage=(msg)=>{
         console.log('获取到消息: ',msg);
       }
-      
+
       ws.onclose=()=>{
         console.log("websocket close")
       }
-      
+
       ws.onerror=()=>{
         console.log('websocket error')
       }
