@@ -17,3 +17,6 @@ export const getExerciseInfo = (data) => {
     return axios.get(BASE_URL+'/slab-match/exercise-info',data)
 }
 
+export const gameWebSocket = () => {
+    return new WebSocket('wss://fwwb-ws.dasctf.com:443/ws')
+}

@@ -1,7 +1,8 @@
 <style>
 @import './css/bigscreen.css';
 .bg{
-  background:url("@/assets/images/starwar/space.jpg") no-repeat;
+  /*background:url("@/assets/images/starwar/space.jpg") no-repeat;*/
+  background: #010149;
 }
 .mainContent{
   display: flex;
@@ -39,10 +40,11 @@
     </div>
     <div class="mainContent">
       <div class="left-sider">
+        <notice-panel :config="notice"/>
 
       </div>
       <div class="content">
-
+        飞线图
       </div>
       <div class="right-sider">
 
@@ -56,20 +58,25 @@ import { useRoute } from "vue-router"
 import { SCREENSOCKET_URL } from "@/constants/index.js"
 import { getDate, TimeDown, getGameState } from '@/libs/tools'
 import {BorderBox1} from "@kjgl77/datav-vue3";
-import {getGameInfo} from "@/api/game.js";
+import {getGameInfo, getNotice} from "@/api/game.js";
 import {Icon} from "view-ui-plus";
+import NoticePanel from "@/views/ctfgame/components/noticePanel.vue";
+import emitter from "view-ui-plus/src/mixins/emitter.js";
 const route = useRoute()
-const width = ref(1920);
-const height = ref(968);
 const gameInfo = reactive({});
-const socket = ref(false);
-let ws = null;
 const timer = ref(null);
 const interTime = ref(null);
 
+const notice=ref({})
+
+getNotice({
+  matchId: "123"
+}).then(res => {
+  notice.value = res.data.data
+})
 
 onMounted(() => {
-  setInterval(_getGameInfo, 3000)
+  // setInterval(_getGameInfo, 3000)
  _getGameInfo()
 })
 function _getGameInfo() {
@@ -91,7 +98,6 @@ function _getGameInfo() {
       start_at: res.data.startTimestamp,
       end_at: res.data.endTimestamp
     })
-
     //倒计时
     interTime.value = setInterval(() => {
       timer.value = gameInfo.game_state.time ? TimeDown(gameInfo.game_state.time) : false
@@ -100,5 +106,7 @@ function _getGameInfo() {
       }
     }, 1000)
   });
+  console.log(gameInfo)
 }
+
 </script>
