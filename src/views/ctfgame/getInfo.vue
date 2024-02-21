@@ -23,25 +23,14 @@ let datalist=ref([{
 
 const ws=gameWebSocket()
 
-ws.onopen=()=>{
-  console.log('websocket open');
-}
+      ws.onmessage=(msg)=>{
+        let datas=JSON.parse(msg.data)
+        for(let d of datas.params){
+          datalist.value.unshift(d)
+        }
+        console.log(datalist.value)
+      }
 
-ws.onmessage=(msg)=>{
-  let datas=JSON.parse(msg.data)
-  for(let d of datas.params){
-    datalist.value.unshift(d)
-  }
-  console.log(datalist.value)
-}
-
-ws.onclose=()=>{
-  console.log("websocket close")
-}
-
-ws.onerror=()=>{
-  console.log('websocket error')
-}
 </script>
 <style scoped>
 </style>
