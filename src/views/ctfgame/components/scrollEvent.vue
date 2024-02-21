@@ -46,6 +46,10 @@
         opacity: 0;
         translate:0 360%;
     }
+    .info span{
+        font-weight: bold;
+        color: rgb(160, 208, 250);
+    }
 </style>
 
 <template>
@@ -53,8 +57,8 @@
         <div class="event_online">
             <div class="info" v-for="data in usedatastore.dataList" :key="data.userId">
                 <p>{{ data.time }}</p>
-                <div v-if="data.eventType=='FIRST_BLOOD'" style="color: rgb(255, 128, 128);">[FirstBlood]</div>
-                {{ data.nickname }}成功解决了题目[{{ data.problemType }}]{{ data.problemName }},取得了{{ data.point }}分
+                <div v-if="data.eventType=='FIRST_BLOOD'" style="color: rgb(212, 95, 95);">[FirstBlood]</div>
+                <span>{{ data.nickname }}</span>成功解决了题目<span>[{{ data.problemType }}]{{ data.problemName }}</span>,取得了{{ data.point }}分
             </div>
         </div>
     </dv-border-box-12>
