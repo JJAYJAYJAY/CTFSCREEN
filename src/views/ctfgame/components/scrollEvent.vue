@@ -76,11 +76,11 @@
 <script setup lang="js">
 import { gameWebSocket } from '@/api/game';
 import { getDate } from '@/libs/tools';
-import { usedataStore } from '@/store/dataList';
+import {useDataListStore} from '@/store';
 import { nanoid } from 'nanoid';
 
     //获取dataStore
-    const usedatastore=usedataStore();
+    const usedatastore=useDataListStore();
     //用于临时储存信息
     let data_store=([]);
 
@@ -93,7 +93,7 @@ import { nanoid } from 'nanoid';
             data.id=nanoid();//随机生成一个id
             data_store.push(data);
         }
-        console.log(data_store);    
+        console.log(data_store);
     }
 
     //设置定时器，每隔2秒将临时储存的信息加入dataList中
