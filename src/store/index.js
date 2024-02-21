@@ -1,2 +1,2 @@
-export useCompetitorStore from "@/store/competitorStore.js";
-export useDataListStore from "@/store/dataListStore.js";
+export {default as useCompetitorStore} from "@/store/competitorStore.js";
+export {default as useDataListStore} from "@/store/dataListStore.js";
