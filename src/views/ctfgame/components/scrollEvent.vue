@@ -4,7 +4,9 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        transition: ease 1s;
+        animation-name:es-in;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
     }
     .info{
         width: 100%;
