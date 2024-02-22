@@ -49,6 +49,7 @@
       </div>
       <div class="right-sider">
         <ScrollEvent />
+        <RankLine/>
       </div>
     </div>
   </dv-full-screen-container>
@@ -59,19 +60,22 @@ import { useRoute } from "vue-router"
 import { SCREENSOCKET_URL } from "@/constants/index.js"
 import { getDate, TimeDown, getGameState } from '@/libs/tools'
 import {BorderBox1} from "@kjgl77/datav-vue3";
-import {getGameInfo, getNotice, getUserInfo} from "@/api/game.js";
+import {getExerciseInfo, getGameInfo, getNotice, getUserInfo} from "@/api/game.js";
 import {Icon} from "view-ui-plus";
 import NoticePanel from "@/views/ctfgame/components/noticePanel.vue";
 import emitter from "view-ui-plus/src/mixins/emitter.js";
 import ScrollEvent from "./components/scrollEvent.vue";
+import RankLine from "./components/rankLine.vue";
 import { useCompetitorStore } from "@/store";
-import { Competitor } from "@/model";
+import { Competitor,Challenge } from "@/model";
+import useChanllengeStore from "@/store/chanllengeStore";
 const route = useRoute()
 const gameInfo = reactive({});
 const timer = ref(null);
 const interTime = ref(null);
 
 const usecompetitorstore=useCompetitorStore();
+const usechanllengestore=useChanllengeStore();
 
 const notice=ref({})
 
@@ -86,6 +90,7 @@ onMounted(() => {
   // setInterval(_getGameInfo, 3000)
  _getGameInfo()
  _getCompetitionInfo()
+ _getExerciseInfo()
 })
 
 //获取赛事信息
@@ -127,9 +132,22 @@ function _getCompetitionInfo(){
   .then(res=>{
     let datas =res.data.data
     for(let data of datas){
-      usecompetitorstore.userList.push(new Competitor(data))
+      usecompetitorstore.addCompetitor(new Competitor(data))
     }
     console.log(usecompetitorstore.userList)
+  })
+}
+
+function _getExerciseInfo(){
+  getExerciseInfo({
+    matchId:"123"
+  })
+  .then(res=>{
+    let datas =res.data.data
+    for(let data of datas){
+      usechanllengestore.addchanllenge(new Challenge(data))
+    }
+    console.log(usechanllengestore.chanllengeList)
   })
 }
 </script>
