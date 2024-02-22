@@ -7,7 +7,7 @@ const useCompetitorStore = defineStore(
     ()=>{
         const userList = ref([
             {
-                name:new Competitor()
+                // name:new Competitor()
             }
         ])
 

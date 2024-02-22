@@ -59,15 +59,19 @@ import { useRoute } from "vue-router"
 import { SCREENSOCKET_URL } from "@/constants/index.js"
 import { getDate, TimeDown, getGameState } from '@/libs/tools'
 import {BorderBox1} from "@kjgl77/datav-vue3";
-import {getGameInfo, getNotice} from "@/api/game.js";
+import {getGameInfo, getNotice, getUserInfo} from "@/api/game.js";
 import {Icon} from "view-ui-plus";
 import NoticePanel from "@/views/ctfgame/components/noticePanel.vue";
 import emitter from "view-ui-plus/src/mixins/emitter.js";
 import ScrollEvent from "./components/scrollEvent.vue";
+import { useCompetitorStore } from "@/store";
+import { Competitor } from "@/model";
 const route = useRoute()
 const gameInfo = reactive({});
 const timer = ref(null);
 const interTime = ref(null);
+
+const usecompetitorstore=useCompetitorStore();
 
 const notice=ref({})
 
@@ -77,10 +81,14 @@ getNotice({
   notice.value = res.data.data
 })
 
+//项目加载
 onMounted(() => {
   // setInterval(_getGameInfo, 3000)
  _getGameInfo()
+ _getCompetitionInfo()
 })
+
+//获取赛事信息
 function _getGameInfo() {
   getGameInfo({
     matchId: "123"
@@ -111,4 +119,17 @@ function _getGameInfo() {
   console.log(gameInfo)
 }
 
+//获取用户信息
+function _getCompetitionInfo(){
+  getUserInfo({
+    matchId:"123"
+  })
+  .then(res=>{
+    let datas =res.data.data
+    for(let data of datas){
+      usecompetitorstore.userList.push(new Competitor(data))
+    }
+    console.log(usecompetitorstore.userList)
+  })
+}
 </script>

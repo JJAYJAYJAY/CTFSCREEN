@@ -41,18 +41,18 @@
     }
     .info:nth-of-type(2){
         visibility: visible;
-        translate:0 120%;
+        translate:0 110%;
         transition: ease 1s;
     }
     .info:nth-of-type(3){
         visibility: visible;
-        translate:0 240%;
+        translate:0 220%;
         transition: ease 1s;
     }
     .info:nth-of-type(4){
         visibility: hidden;
         opacity: 0;
-        translate:0 360%;
+        translate:0 330%;
         transition: ease 1s;
     }
     .info span{
@@ -62,9 +62,9 @@
 </style>
 
 <template>
-    <dv-border-box-12 style="padding: 20px; height: 380px;">
+    <dv-border-box-12 style="padding: 20px; height: 360px;">
         <div class="event_online">
-            <div class="info" v-for="data in usedatastore.dataList" :key="data.id">
+            <div class="info" v-for="data in useeventstore.eventList" :key="data.id">
                 <p>{{ data.time }}</p>
                 <div v-if="data.eventType=='FIRST_BLOOD'" style="color: rgb(212, 95, 95);">[FirstBlood]</div>
                 <span>{{ data.nickname }}</span>成功解决了题目<span>[{{ data.problemType }}]{{ data.problemName }}</span>,取得了{{ data.point }}分
@@ -76,11 +76,11 @@
 <script setup lang="js">
 import { gameWebSocket } from '@/api/game';
 import { getDate } from '@/libs/tools';
-import {useDataListStore} from '@/store';
+import {useEventListStore} from '@/store';
 import { nanoid } from 'nanoid';
 
     //获取dataStore
-    const usedatastore=useDataListStore();
+    const useeventstore=useEventListStore();
     //用于临时储存信息
     let data_store=([]);
 
@@ -93,13 +93,13 @@ import { nanoid } from 'nanoid';
             data.id=nanoid();//随机生成一个id
             data_store.push(data);
         }
-        console.log(data_store);
+        // console.log(data_store);
     }
 
     //设置定时器，每隔2秒将临时储存的信息加入dataList中
     setInterval(()=>{
         if(data_store.length>0){
-           usedatastore.dataList.unshift(data_store.pop());
+           useeventstore.eventList.unshift(data_store.pop());
         }
     },2000)
 </script>
