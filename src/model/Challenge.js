@@ -2,7 +2,7 @@ export default class Challenge {
     id//题目id
     category//类型
     name//名称
-    description//描述？
+    description//题面描述
     difficuity//难度
     score//分数
     submissionList//提交的情况
@@ -16,5 +16,5 @@ export default class Challenge {
         this.score=data.score
         this.submissionList=data.submissionList
     }
-    
+
 }

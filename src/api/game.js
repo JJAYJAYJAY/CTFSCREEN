@@ -20,19 +20,19 @@ export const getExerciseInfo = (data) => {
 export const gameWebSocket = () => {
     const ws= new WebSocket('wss://fwwb-ws.dasctf.com:443/ws')
       ws.onopen=()=>{
-        console.log('websocket open');
+        // console.log('websocket open');
       }
 
       ws.onmessage=(msg)=>{
-        console.log('获取到消息: ',msg);
+        // console.log('获取到消息: ',msg);
       }
 
       ws.onclose=()=>{
-        console.log("websocket close")
+        // console.log("websocket close")
       }
 
       ws.onerror=()=>{
-        console.log('websocket error')
+        // console.log('websocket error')
       }
     return ws
 }

@@ -5,20 +5,14 @@ import {Competitor} from "@/model";
 const useCompetitorStore = defineStore(
     'user',
     ()=>{
-        const userList = ref([])
+        const userMap = reactive({})
 
         const addCompetitor = (data)=>{
-            for(let user of userList.value){
-                if(user.id==data.id){
-                    return false;
-                }
-            }
-            userList.value.push(data)
-            return true
+            userMap[data.id]=data
         }
 
         return{
-            userList,
+            userMap,
             addCompetitor
         }
     }

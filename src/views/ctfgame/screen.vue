@@ -33,7 +33,7 @@
   <dv-full-screen-container class="bg">
     <div class="screen-head">
       <div class="screen-head-title">
-        <p > {{gameInfo.name}}</p>
+        <p> {{gameInfo.name}}</p>
         <span class="screen-head-title-time">
           <Icon type="md-clock" size='16' color='#FFF' />{{timer==false?'已结束':timer}}</span>
       </div>
@@ -41,15 +41,14 @@
     <div class="mainContent">
       <div class="left-sider">
         <notice-panel :config="notice"/>
-      
-
+        <RankLine/>
       </div>
       <div class="content">
         飞线图
       </div>
       <div class="right-sider">
         <ScrollEvent />
-        <RankLine/>
+
       </div>
     </div>
   </dv-full-screen-container>
@@ -99,29 +98,30 @@ function _getGameInfo() {
     matchId: "123"
   })
   .then(res => {
-    let data =res.data.data
-    gameInfo.name = data.name
-    gameInfo.subtitle = data.subtitle
-    gameInfo.matchLogo = data.matchLogo
-    gameInfo.sponsor = data.sponsor
-    gameInfo.sponsorLogo = data.sponsorLogo
-    gameInfo.problemCount = data.problemCount
-    gameInfo.playerCount = data.playerCount
-    gameInfo.onLineCount = data.onLineCount
-    gameInfo.autoPlay = data.autoPlay
-    gameInfo.game_state = getGameState({
-      start_at: res.data.startTimestamp,
-      end_at: res.data.endTimestamp
-    })
-    //倒计时
-    interTime.value = setInterval(() => {
-      timer.value = gameInfo.game_state.time ? TimeDown(gameInfo.game_state.time) : false
-      if (timer.value === false) {
-        clearInterval(interTime.value)
-      }
-    }, 1000)
+    let data =res.data
+    // console.log(res.data)
+    // gameInfo.name = data.name
+    // gameInfo.subtitle = data.subtitle
+    // gameInfo.matchLogo = data.matchLogo
+    // gameInfo.sponsor = data.sponsor
+    // gameInfo.sponsorLogo = data.sponsorLogo
+    // gameInfo.problemCount = data.problemCount
+    // gameInfo.playerCount = data.playerCount
+    // gameInfo.onLineCount = data.onLineCount
+    // gameInfo.autoPlay = data.autoPlay
+    // gameInfo.game_state = getGameState({
+    //   start_at: data.startTimestamp,
+    //   end_at: data.endTimestamp
+    // })
+    // //倒计时
+    // interTime.value = setInterval(() => {
+    //   timer.value = gameInfo.game_state.time ? TimeDown(gameInfo.game_state.time) : false
+    //   if (timer.value === false) {
+    //     clearInterval(interTime.value)
+    //   }
+    // }, 1000)
   });
-  console.log(gameInfo)
+  // console.log(gameInfo)
 }
 
 //获取用户信息
@@ -134,7 +134,6 @@ function _getCompetitionInfo(){
     for(let data of datas){
       usecompetitorstore.addCompetitor(new Competitor(data))
     }
-    console.log(usecompetitorstore.userList)
   })
 }
 
@@ -147,7 +146,6 @@ function _getExerciseInfo(){
     for(let data of datas){
       usechanllengestore.addchanllenge(new Challenge(data))
     }
-    console.log(usechanllengestore.chanllengeList)
   })
 }
 </script>
