@@ -3,17 +3,17 @@
 
 <template>
   <dv-border-box-13 style="height: 240px; padding:18px" >
-      <div ref="chart" style="width:360px;height: 240px"></div>
+     <chart :option="option" theme="macarons" :size="size"></chart>
   </dv-border-box-13>
 </template>
 
 <script setup lang="js">
-import * as echarts from 'echarts';
-import 'echarts/theme/macarons.js';
-import {getCurrentInstance, onMounted, ref} from "vue";
+import 'echarts/theme/macarons.js'
+import {onMounted, ref} from "vue";
+import Chart from "@/components/chart.vue";
 
+const size=ref({width:'360px',height:'240px'})
 const option=ref({});
-let chart = ref();
 let data = [];
 let now = new Date(1997, 9, 3);
 let oneDay = 24 * 3600 * 1000;
@@ -66,27 +66,19 @@ option.value = {
     }
   ]
 };
-
-
-
-onMounted(()=>{
-  let myChart = echarts.init(chart.value, 'macarons');
-  setInterval(function () {
-    for (var i = 0; i < 5; i++) {
-      data.shift();
-      data.push(randomData());
-    }
-    myChart.setOption({
-      series: [
-        {
-          data: data
-        }
-      ]
-    });
-  }, 1000);
-  option && myChart.setOption(option.value);
-})
-
+setInterval(function () {
+  for (var i = 0; i < 5; i++) {
+    data.shift();
+    data.push(randomData());
+  }
+  option.value = {
+    series: [
+      {
+        data: data
+      }
+    ]
+  };
+}, 1000);
 function randomData() {
   now = new Date(+now + oneDay);
   value = value + Math.random() * 21 - 10;
