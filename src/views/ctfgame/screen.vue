@@ -42,6 +42,7 @@
       <div class="left-sider">
         <notice-panel :config="notice"/>
         <RankLine/>
+        <sloved-challenge-pie-chart />
       </div>
       <div class="content">
         飞线图
@@ -68,6 +69,7 @@ import RankLine from "./components/rankLine.vue";
 import { useCompetitorStore } from "@/store";
 import { Competitor,Challenge } from "@/model";
 import useChanllengeStore from "@/store/chanllengeStore";
+import SlovedChallengePieChart from "@/views/ctfgame/components/slovedChallengePieChart.vue";
 const route = useRoute()
 const gameInfo = reactive({});
 const timer = ref(null);
