@@ -3,34 +3,32 @@
 .bg{
   /*background:url("@/assets/images/starwar/space.jpg") no-repeat;*/
   background: #010149;
+  height: 100vh;
+}
+.contentHeight{
+  margin-top: 8vh;
+  height: 89vh;
 }
 .mainContent{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 100%;
+  height: 97vh;
 }
 .left-sider{
   width: 25%;
-  margin-top: 8%;
-  height: 100%;
   background: rgba(0,0,0,0.5);
 }
 .right-sider{
   width: 25%;
-  margin-top: 8%;
-  height: 100%;
   background: rgba(241, 224, 224, 0.5);
 }
 .content{
   width: 50%;
-  margin-top: 8%;
-  height: 100%;
   background: rgba(148, 20, 20, 0.5);
 }
 </style>
 <template>
-  <dv-full-screen-container class="bg">
+  <div class="bg">
     <div class="screen-head">
       <div class="screen-head-title">
         <p> {{gameInfo.name}}</p>
@@ -39,20 +37,19 @@
       </div>
     </div>
     <div class="mainContent">
-      <div class="left-sider">
-        <notice-panel :config="notice"/>
+      <div class="left-sider contentHeight">
         <RankLine/>
         <sloved-challenge-pie-chart />
       </div>
-      <div class="content">
+      <div class="content contentHeight">
         飞线图
       </div>
-      <div class="right-sider">
+      <div class="right-sider contentHeight">
         <ScrollEvent />
 
       </div>
     </div>
-  </dv-full-screen-container>
+  </div>
 </template>
 <script setup lang="js">
 import { ref, onMounted, watch,reactive} from "vue"

@@ -3,24 +3,26 @@
 </style>
 
 <template>
-  <dv-border-box-8 style="height: 240px; padding:18px" >
-    <chart :option="option" theme="" :size="size"></chart>
-  </dv-border-box-8>
+  <div style="height: 30%">
+    <dv-border-box-8  style="height:100%;padding:18px">
+      <chart :option="option" theme="" :size="size"></chart>
+    </dv-border-box-8>
+  </div>
 </template>
 
 <script setup lang="js">
 import Chart from "@/components/chart.vue";
 import {ref} from "vue";
 
-const size=ref({width:'360px',height:'240px'})
+const size=ref({width:'100%',height:'100%'})
 const option=ref({});
 
 const pieData=ref([
-  { value: 108, name: 'WEB' },
-  { value: 735, name: 'CRYPTO' },
-  { value: 580, name: 'MISC' },
-  { value: 484, name: 'RESERVE' },
-  { value: 300, name: 'PWN' }
+  { value: 10, name: 'WEB' },
+  { value: 10, name: 'CRYPTO' },
+  { value: 10, name: 'MISC' },
+  { value: 10, name: 'RESERVE' },
+  { value: 0, name: 'PWN' }
 ])
 option.value = {
   title: {
@@ -47,10 +49,11 @@ option.value = {
       type: 'pie',
       radius: ['40%', '70%'],
       avoidLabelOverlap: false,
+      stillShowZeroSum:true,
       padAngle: 5,
       left: 120,
-      width: 200,
-      height: 200,
+      width: '70%',
+      height: '100%',
       itemStyle: {
         borderRadius: 10,
       },

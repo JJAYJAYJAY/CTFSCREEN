@@ -2,9 +2,11 @@
 </style>
 
 <template>
-  <dv-border-box-13 style="height: 240px; padding:18px" >
-     <chart :option="option" theme="macarons" :size="size"></chart>
-  </dv-border-box-13>
+  <div style="height: 30%">
+    <dv-border-box-13  style="width:100%;padding:18px">
+      <chart :option="option" theme="macarons" :size="size"></chart>
+    </dv-border-box-13>
+  </div>
 </template>
 
 <script setup lang="js">
@@ -12,7 +14,7 @@ import 'echarts/theme/macarons.js'
 import {onMounted, ref} from "vue";
 import Chart from "@/components/chart.vue";
 
-const size=ref({width:'360px',height:'240px'})
+const size=ref({width:'100%',height:'100%'})
 const option=ref({});
 let data = [];
 let now = new Date(1997, 9, 3);
@@ -62,7 +64,9 @@ option.value = {
       name: 'Fake Data',
       type: 'line',
       showSymbol: false,
-      data: data
+      data: data,
+      height: '25%',
+      width: '100%'
     }
   ]
 };

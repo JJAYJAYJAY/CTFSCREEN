@@ -33,6 +33,12 @@ onMounted(()=>{
   watch(()=>props.option,()=>{
     myChart.setOption(props.option);
   })
+  //检测窗口变化
+  window.addEventListener('resize',()=>{
+    myChart.resize()
+  })
   props.option && myChart.setOption(props.option);
 })
+
+
 </script>
