@@ -20,7 +20,7 @@
 }
 .right-sider{
   width: 25%;
-  background: rgba(241, 224, 224, 0.5);
+  background: rgba(0,0,0,0.5);
 }
 .content{
   width: 50%;
@@ -39,15 +39,15 @@
     <div class="mainContent">
       <div class="left-sider contentHeight">
         <live-people/>
-        <sloved-challenge-pie-chart />
-        <rank/>
+        <notice-panel/>
+        <ScrollEvent />
       </div>
       <div class="content contentHeight">
         飞线图
       </div>
       <div class="right-sider contentHeight">
-        <notice-panel/>
-        <ScrollEvent />
+        <sloved-challenge-pie-chart />        
+        <rank/>       
       </div>
     </div>
   </div>

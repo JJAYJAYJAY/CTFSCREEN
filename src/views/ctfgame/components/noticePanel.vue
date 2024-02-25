@@ -3,8 +3,8 @@
 </style>
 
 <template>
-  <dv-border-box-12 style="padding: 20px; height: 360px;">
-    
+  <dv-border-box-12 style="padding: 20px; height: 28%;">
+
   </dv-border-box-12>
 </template>
 
