@@ -14,18 +14,19 @@ import 'echarts/theme/macarons.js'
 import {onMounted, ref} from "vue";
 import Chart from "@/components/chart.vue";
 
-const size=ref({width:'100%',height:'100%'})
+const size=ref({width:'100%',height:'120%',top:'-10%',position:'relative'})
 const option=ref({});
 let data = [];
 let now = new Date(1997, 9, 3);
 let oneDay = 24 * 3600 * 1000;
 let value = Math.random() * 1000;
-for (var i = 0; i < 1000; i++) {
+for (let i = 0; i < 1000; i++) {
   data.push(randomData());
 }
 option.value = {
   title: {
-    text: 'Dynamic Data & Time Axis'
+    text: '在线人数',
+    top:'8%'
   },
   tooltip: {
     trigger: 'axis',
@@ -48,25 +49,23 @@ option.value = {
   },
   xAxis: {
     type: 'time',
-    splitLine: {
-      show: false
-    }
+    // splitLine: {
+    //   show: false
+    // }
   },
   yAxis: {
     type: 'value',
-    boundaryGap: [0, '100%'],
-    splitLine: {
-      show: false
-    }
+    // boundaryGap: [0, '100%'],
+    // splitLine: {
+    //   show: false
+    // }
   },
   series: [
     {
       name: 'Fake Data',
       type: 'line',
       showSymbol: false,
-      data: data,
-      height: '25%',
-      width: '100%'
+      data: data
     }
   ]
 };

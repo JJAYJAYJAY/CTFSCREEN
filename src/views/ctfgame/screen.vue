@@ -38,39 +38,34 @@
     </div>
     <div class="mainContent">
       <div class="left-sider contentHeight">
-        <RankLine/>
+        <live-people/>
         <sloved-challenge-pie-chart />
+        <rank/>
       </div>
       <div class="content contentHeight">
         飞线图
       </div>
       <div class="right-sider contentHeight">
+        <notice-panel/>
         <ScrollEvent />
-
       </div>
     </div>
   </div>
 </template>
 <script setup lang="js">
 import { ref, onMounted, watch,reactive} from "vue"
-import { useRoute } from "vue-router"
-import { SCREENSOCKET_URL } from "@/constants/index.js"
-import { getDate, TimeDown, getGameState } from '@/libs/tools'
-import {BorderBox1} from "@kjgl77/datav-vue3";
 import {getExerciseInfo, getGameInfo, getNotice, getUserInfo} from "@/api/game.js";
 import {Icon} from "view-ui-plus";
 import NoticePanel from "@/views/ctfgame/components/noticePanel.vue";
-import emitter from "view-ui-plus/src/mixins/emitter.js";
 import ScrollEvent from "./components/scrollEvent.vue";
-import RankLine from "./components/rankLine.vue";
+import livePeople from "./components/livePeople.vue";
 import { useCompetitorStore } from "@/store";
 import { Competitor,Challenge } from "@/model";
 import useChanllengeStore from "@/store/chanllengeStore";
 import SlovedChallengePieChart from "@/views/ctfgame/components/slovedChallengePieChart.vue";
-const route = useRoute()
+import Rank from "@/views/ctfgame/components/rank.vue";
 const gameInfo = reactive({});
 const timer = ref(null);
-const interTime = ref(null);
 
 const usecompetitorstore=useCompetitorStore();
 const usechanllengestore=useChanllengeStore();

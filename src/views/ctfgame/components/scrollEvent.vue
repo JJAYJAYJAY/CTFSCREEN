@@ -82,6 +82,7 @@ import {useEventListStore} from '@/store';
 import { nanoid } from 'nanoid';
 
     //获取dataStore
+    //事件信息不要存储，处理好后就行，这样太内存占用太大
     const useeventstore=useEventListStore();
     //用于临时储存信息
     let data_store=([]);
