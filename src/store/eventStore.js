@@ -4,10 +4,11 @@ import {ref} from "vue";
 const useEventStore =defineStore('event',
     ()=>{
         const eventList = ref([])
-
+        let timer
 
         return{
-            eventList
+            eventList,
+            timer
         }
     },
 )

@@ -1,21 +1,15 @@
 import {defineStore} from 'pinia'
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 
 const useChanllengeStore =defineStore('chanllenge',
     ()=>{
-        const chanllengeList = ref([])
+        const chanllengeMap = reactive({});
 
         const addchanllenge = (data)=>{
-            for(let chanllenge of chanllengeList.value){
-                if(chanllenge.id==data.id){
-                    return false;
-                }
-            }
-            chanllengeList.value.push(data)
-            return true
+            chanllengeMap[data.id]=data;
         }
         return{
-            chanllengeList,
+            chanllengeMap,
             addchanllenge
         }
     },
