@@ -52,7 +52,7 @@ option.value = {
       stillShowZeroSum:true,
       padAngle: 5,
       left: 120,
-      width: '70%',
+      width: '55%',
       height: '100%',
       itemStyle: {
         borderRadius: 10,
