@@ -20,11 +20,6 @@
     position: absolute;
     visibility: hidden;
     translate: 0 360%;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 @keyframes es-in {
@@ -68,6 +63,16 @@
 .info span {
     font-weight: bold;
     color: rgb(160, 208, 250);
+    text-wrap: unrestricted;
+}
+.event_describtion{
+    word-break: break-all;
+    height: 40px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>
 
@@ -77,8 +82,12 @@
             <div class="info" v-for="data in useeventstore.eventList" :key="data.id">
                 <p>{{ data.time }}</p>
                 <div v-if="data.eventType == 'FIRST_BLOOD'" style="color: rgb(212, 95, 95);">[FirstBlood]</div>
-                <span>{{ data.nickname }}</span>成功解决了题目<span>[{{ data.problemType }}]{{ data.problemName }}</span>,取得了{{
-                    data.point }}分
+                <p class="event_describtion">
+                <span>{{ data.nickname }}</span>
+                成功解决了题目
+                <span>[{{ data.problemType }}]{{ data.problemName }}</span>
+                ,取得了{{data.point }}分
+                </p>
             </div>
         </div>
     </dv-border-box-12>

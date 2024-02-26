@@ -132,7 +132,7 @@ function _getCompetitionInfo(){
     for(let data of datas){
       usecompetitorstore.addCompetitor(new Competitor(data))
     }
-    console.log(usechanllengestore.chanllengeMap)
+    console.log(datas)
   })
 }
 
