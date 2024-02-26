@@ -22,7 +22,6 @@ console.log(useGameInfoStore().gameInfo.onLineCount)
 
 let data = [];
 let now = new Date();
-let value = Math.random() * 1000;
 data.push({
   name: now.toString(),
   value: [
@@ -31,22 +30,22 @@ data.push({
   ]
 });
 
-for(let i = 1; i < 100; i++) {
-  now = new Date(+now + 60*1000);
-  gameInfoStore.gameInfo.onLineCount +=(Math.random() * 21 - 10);
-  data.push({
-    name: now.toString(),
-    value: [
-      now.getTime(),
-      gameInfoStore.gameInfo.onLineCount
-    ]
-  });
-}
-
-setInterval(()=>{
-  now = new Date(+now + 60*1000);
-  gameInfoStore.gameInfo.onLineCount += (Math.random() * 21 - 10);
-},1000)
+// for(let i = 1; i < 200; i++) {
+//   now = new Date(+now+1000);
+//   gameInfoStore.gameInfo.onLineCount +=Math.floor(Math.random() * 21 - 10);
+//   data.push({
+//     name: now.toString(),
+//     value: [
+//       now.getTime(),
+//       gameInfoStore.gameInfo.onLineCount
+//     ]
+//   });
+// }
+//
+// setInterval(()=>{
+//   now = new Date(+now+1000);
+//   gameInfoStore.gameInfo.onLineCount +=Math.floor(Math.random() * 21 - 10);
+// },1000)
 
 option.value = {
   title: {
@@ -57,8 +56,14 @@ option.value = {
     trigger: 'axis',
     formatter: function (params) {
       params = params[0];
-      var date = new Date(params.name);
+      let date = new Date(params.name);
       return (
+          date.getFullYear() +
+          '/' +
+          (date.getMonth() + 1) +
+          '/' +
+          date.getDate() +
+          ' ' +
           date.getHours() +
           ':' +
           date.getMinutes() +
@@ -74,7 +79,7 @@ option.value = {
   },
   xAxis: {
     type: 'time',
-    minInterval:60 * 1000,
+    minInterval:1000,
     splitLine: {
       show: false
     }
@@ -92,15 +97,22 @@ option.value = {
       type: 'line',
       showSymbol: false,
       data: data,
-      smooth:1
+      smooth:1,
+      endLabel:{
+        show:true,
+        offset:[0,0],
+        color:'#2E7EEA',
+        fontWeight:'bold',
+      }
     }
   ]
 };
   onMounted(()=>{
     watch(gameInfoStore.gameInfo,()=>{
-      if(data.length>100){
+      if(data.length>200){
         data.shift()
       }
+      let now = new Date();
       data.push({
         name: now.toString(),
         value: [

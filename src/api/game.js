@@ -10,7 +10,7 @@ export const getUserInfo = (data) => {
 }
 
 export const getGameInfo = (data) => {
-    return axios.get(BASE_URL+'/slab-match/game-info',data)
+    return axios.get("https://xhlj-cxs.dasctf.com/mock/11/slab-match/game-info",data)
 }
 
 export const getExerciseInfo = (data) => {
