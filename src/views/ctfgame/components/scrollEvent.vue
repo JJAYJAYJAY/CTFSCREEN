@@ -124,6 +124,10 @@ if (useeventstore.timer !== null) {
     useeventstore.timer=setInterval(() => {
         if (data_store.length > 0) {
             useeventstore.eventList.unshift(data_store.pop());
+            if(useeventstore.eventList.length>10){
+                useeventstore.eventList.pop()
+            }
+            console.log(useeventstore.eventList)
         }
     }, 2000)
 </script>

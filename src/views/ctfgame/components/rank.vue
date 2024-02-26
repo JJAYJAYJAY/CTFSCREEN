@@ -22,12 +22,12 @@ const option=ref({});
 
 let usecompetitorstore=useCompetitorStore()
 let users=Object.values(usecompetitorstore.userMap)
-let user_names=reactive([]);
-let user_score=reactive([]);
-for(let user of users){
-  user_names.push(user.nickname)
-  user_score.push(user.score)
-}
+// let user_names=reactive([]);
+// let user_score=reactive([]);
+// for(let user of users){
+//   user_names.push(user.nickname)
+//   user_score.push(user.score)
+// }
 
 
 //图表参数配置
