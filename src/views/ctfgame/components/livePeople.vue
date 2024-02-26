@@ -22,7 +22,6 @@ console.log(useGameInfoStore().gameInfo.onLineCount)
 
 let data = [];
 let now = new Date();
-let oneDay = 24 * 3600 * 1000;
 let value = Math.random() * 1000;
 data.push({
   name: now.toString(),
@@ -31,9 +30,22 @@ data.push({
     gameInfoStore.gameInfo.onLineCount
   ]
 });
+
+for(let i = 1; i < 100; i++) {
+  now = new Date(+now + 60*1000);
+  gameInfoStore.gameInfo.onLineCount +=(Math.random() * 21 - 10);
+  data.push({
+    name: now.toString(),
+    value: [
+      now.getTime(),
+      gameInfoStore.gameInfo.onLineCount
+    ]
+  });
+}
+
 setInterval(()=>{
-  now = new Date(+now + oneDay);
-  gameInfoStore.gameInfo.onLineCount+=(Math.floor(Math.random()*1000)-Math.floor(Math.random()*1000))
+  now = new Date(+now + 60*1000);
+  gameInfoStore.gameInfo.onLineCount += (Math.random() * 21 - 10);
 },1000)
 
 option.value = {
@@ -62,36 +74,37 @@ option.value = {
   },
   xAxis: {
     type: 'time',
-    // maxInterval:60 * 1000
-    // splitLine: {
-    //   show: false
-    // }
+    minInterval:60 * 1000,
+    splitLine: {
+      show: false
+    }
   },
   yAxis: {
     type: 'value',
-    // boundaryGap: [0, '100%'],
-    // splitLine: {
-    //   show: false
-    // }
+    boundaryGap: [0, '100%'],
+    splitLine: {
+      show: false
+    }
   },
   series: [
     {
       name: 'Fake Data',
       type: 'line',
       showSymbol: false,
-      data: data
+      data: data,
+      smooth:1
     }
   ]
 };
   onMounted(()=>{
     watch(gameInfoStore.gameInfo,()=>{
-      // if(data.length>10){
-      //   data.shift()
-      // }
+      if(data.length>100){
+        data.shift()
+      }
       data.push({
         name: now.toString(),
         value: [
-          [now.getHours(), now.getMonth(), now.getDay()].join('/'),
+          now.getTime(),
           gameInfoStore.gameInfo.onLineCount
         ]
       });
