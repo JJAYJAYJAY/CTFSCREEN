@@ -15,20 +15,35 @@
 <script setup lang="js">
 import Chart from "@/components/chart.vue";
 import { useCompetitorStore } from "@/store";
-import {reactive, ref} from 'vue'
+import {onMounted, reactive, ref, watch} from 'vue'
 
 const size=ref({width:'100%',height:'100%'})
 const option=ref({});
 
 let usecompetitorstore=useCompetitorStore()
-let users=Object.values(usecompetitorstore.userMap)
 
 let user_names=ref([]);
 let user_score=ref([]);
-for(let user of users){
-  user_names.value.push(user.nickname)
-  user_score.value.push(user.score)
-}
+onMounted(()=>{
+  watch(usecompetitorstore.userMap,(newVal,oldVal)=>{
+    let users=Object.values(newVal)
+    for(let user of users){
+      user_names.value.push(user.nickname)
+      user_score.value.push(user.score)
+    }
+    option.value={
+      series: [
+        {
+          data: user_score.value
+        }
+      ],
+      yAxis: {
+        data:user_names.value
+      }
+    }
+  })
+})
+
 
 
 //图表参数配置
@@ -95,7 +110,10 @@ setInterval(()=>{
       {
         data: user_score.value
       }
-    ]
+    ],
+    yAxis: {
+      data:user_names.value
+    }
   }
 },1000)
 

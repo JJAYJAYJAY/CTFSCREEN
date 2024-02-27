@@ -120,7 +120,6 @@ option.value = {
           gameInfoStore.gameInfo.onLineCount
         ]
       });
-      console.log(data)
       option.value={
         series: [
           {

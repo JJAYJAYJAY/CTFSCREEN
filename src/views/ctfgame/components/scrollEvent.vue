@@ -127,7 +127,6 @@ if (useeventstore.timer !== null) {
             if(useeventstore.eventList.length>10){
                 useeventstore.eventList.pop()
             }
-            console.log(useeventstore.eventList)
         }
     }, 2000)
 </script>

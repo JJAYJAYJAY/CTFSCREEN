@@ -16,11 +16,11 @@
 }
 .left-sider{
   width: 25%;
-  background: rgba(0,0,0,0.5);
+  /*background: rgba(0,0,0,0.5);*/
 }
 .right-sider{
   width: 25%;
-  background: rgba(0,0,0,0.5);
+  /*background: rgba(0,0,0,0.5);*/
 }
 .content{
   width: 50%;
@@ -28,6 +28,7 @@
 }
 </style>
 <template>
+<!--  <main-content style="position: absolute"/>-->
   <div class="bg">
     <div class="screen-head">
       <div class="screen-head-title">
@@ -43,7 +44,7 @@
         <ScrollEvent />
       </div>
       <div class="content contentHeight">
-        飞线图
+
       </div>
       <div class="right-sider contentHeight">
         <sloved-challenge-pie-chart />
@@ -66,6 +67,7 @@ import SlovedChallengePieChart from "@/views/ctfgame/components/slovedChallengeP
 import Rank from "@/views/ctfgame/components/rank.vue";
 import {getGameState} from "@/libs/tools.js";
 import useGameInfoStore from "@/store/gameInfoStore.js";
+import MainContent from "@/views/ctfgame/components/mainContent.vue";
 const interTime = ref(null);
 const gameInfo = reactive({});
 const timer = ref(null);
@@ -97,7 +99,6 @@ function _getGameInfo() {
   })
   .then(res => {
     let data =res.data.data
-    console.log(res.data)
     gameInfoStore.gameInfo.name = data.name
     gameInfoStore.gameInfo.subtitle = data.subtitle
     gameInfoStore.gameInfo.matchLogo = data.matchLogo
