@@ -112,12 +112,12 @@ function _getGameInfo() {
       end_at: data.endTimestamp
     })
     //倒计时
-    interTime.value = setInterval(() => {
-      timer.value = gameInfo.game_state.time ? TimeDown(gameInfo.game_state.time) : false
-      if (timer.value === false) {
-        clearInterval(interTime.value)
-      }
-    }, 1000)
+    // interTime.value = setInterval(() => {
+    //   timer.value = gameInfo.game_state.time ? TimeDown(gameInfo.game_state.time) : false
+    //   if (timer.value === false) {
+    //     clearInterval(interTime.value)
+    //   }
+    // }, 1000)
   });
   // console.log(gameInfo)
 }
@@ -132,7 +132,7 @@ function _getCompetitionInfo(){
     for(let data of datas){
       usecompetitorstore.addCompetitor(new Competitor(data))
     }
-    console.log(datas)
+    // console.log(datas)
   })
 }
 
