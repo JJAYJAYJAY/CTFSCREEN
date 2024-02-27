@@ -6,6 +6,7 @@ const useCompetitorStore = defineStore(
     'user',
     ()=>{
         const userMap = reactive({})
+        const rank=reactive([])
 
         const addCompetitor = (data)=>{
             userMap[data.id]=data

@@ -22,11 +22,12 @@ const option=ref({});
 
 let usecompetitorstore=useCompetitorStore()
 let users=Object.values(usecompetitorstore.userMap)
-let user_names=reactive([]);
-let user_score=reactive([]);
+
+let user_names=ref([]);
+let user_score=ref([]);
 for(let user of users){
-  user_names.push(user.nickname)
-  user_score.push(user.score)
+  user_names.value.push(user.nickname)
+  user_score.value.push(user.score)
 }
 
 
@@ -44,7 +45,7 @@ option.value = {
   },
   yAxis: {//y轴（隐藏）设置
     type: 'category',
-    data: user_names,
+    data: user_names.value,
     inverse:'false',
     axisLine:{//坐标轴
       show:false
@@ -68,7 +69,7 @@ option.value = {
   series: [
     {//数据设置
       realtimeSort: true,
-      data: user_score,
+      data: user_score.value,
       type: 'bar',//以柱状显示
       barWidth:'50%',
       label: {//在右方显示数据（分数）
@@ -85,5 +86,17 @@ option.value = {
   ]
 };
 
+setInterval(()=>{
+  for(let i=0;i<user_names.value.length;i++){
+    user_score.value[i]+=Math.floor(Math.random()*21-10)
+  }
+  option.value={
+    series: [
+      {
+        data: user_score.value
+      }
+    ]
+  }
+},1000)
 
 </script>
