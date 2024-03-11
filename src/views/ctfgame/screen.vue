@@ -28,7 +28,8 @@
 }
 </style>
 <template>
-<!--  <main-content style="position: absolute"/>-->
+  <main-content style="position: absolute"/>
+<!--  <globle style="position: absolute;heig  ht: 99.9vh;width: 100vw"></globle>-->
   <div class="bg">
     <div class="screen-head">
       <div class="screen-head-title">
@@ -68,6 +69,7 @@ import Rank from "@/views/ctfgame/components/rank.vue";
 import {getGameState} from "@/libs/tools.js";
 import useGameInfoStore from "@/store/gameInfoStore.js";
 import MainContent from "@/views/ctfgame/components/mainContent.vue";
+import Globle from "@/views/ctfgame/components/globle.vue";
 const interTime = ref(null);
 const gameInfo = reactive({});
 const timer = ref(null);
