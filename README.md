@@ -1,4 +1,5 @@
-# visualscreens
+# CTF信息化大屏展示
+> 使用dataV加ehcharts。主体部分没做烂尾，但是其他的都是可以的，暂用安恒提供的临时mock。
 
 This template should help get you started developing with Vue 3 in Vite.
 
